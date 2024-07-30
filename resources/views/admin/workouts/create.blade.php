@@ -1,24 +1,34 @@
-
 <div>
     <h1>Create New Workout</h1>
 
     <!-- Form to create a new workout -->
     <form action="{{ route('admin.workouts.store') }}" method="POST">
-    <div>
-            <label>Name</label>
-            <input type="text" wire:model="name">
-            @error('name') <span>{{ $message }}</span> @enderror
-        </div>
+        @csrf
+
         <div>
-            <label>Description</label>
-            <input type="text" wire:model="description">
-            @error('description') <span>{{ $message }}</span> @enderror
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+            @error('name')
+                <div class="error">{{ $message }}</div>
+            @enderror
         </div>
+
         <div>
-            <label>Duration Time</label>
-            <input type="text" wire:model="durationTime">
-            @error('durationTime') <span>{{ $message }}</span> @enderror
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required>{{ old('description') }}</textarea>
+            @error('description')
+                <div class="error">{{ $message }}</div>
+            @enderror
         </div>
-        <button type="submit">Save</button>
+
+        <div>
+            <label for="durationTime">Duration (in minutes):</label>
+            <input type="number" id="durationTime" name="durationTime" value="{{ old('durationTime') }}" required>
+            @error('durationTime')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <button type="submit">Create Workout</button>
     </form>
 </div>
