@@ -58,10 +58,10 @@ class User extends Authenticatable
          return $this->hasMany(Workout::class);
      }
 
-    //  public function favoriteWorkouts()
-    //  {
-    //      return $this->hasMany(FavoriteWorkout::class);
-    //  }
+     public function favoriteWorkouts()
+     {
+         return $this->belongsToMany(Workout::class, 'favorite_workouts');
+     }
 
- }
 
+    }

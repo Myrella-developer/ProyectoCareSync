@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Workout;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,5 +66,27 @@ class HomeController extends Controller
         $workout->delete();
 
         return redirect()->route('admin.workouts.index')->with('success', 'Workout deleted successfully.');
+    }
+
+    public function showAllWorkouts()
+    {
+        $workouts = Workout::all();
+        return view('user.all_workouts', compact('workouts'));
+    }
+
+    public function addFavorite(Request $request, $workoutId)
+    {
+        $user = User::all();
+        $user->favoriteWorkouts()->attach($workoutId);
+
+        return redirect()->route('workouts.all')->with('success', 'Workout added to favorites.');
+    }
+
+    public function removeFavorite(Request $request, $workoutId)
+    {
+        $user = $user = User::all();
+        $user->favoriteWorkouts()->detach($workoutId);
+
+        return redirect()->route('workouts.all')->with('success', 'Workout removed from favorites.');
     }
 }
