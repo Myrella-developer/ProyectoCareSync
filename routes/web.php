@@ -31,12 +31,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('workouts/{workout}', [HomeController::class, 'workoutsDestroy'])->name('admin.workouts.destroy');
 });
 
-// Rutas para usuarios
-    Route::middleware('auth')->group(function () {
-        // Ruta para mostrar todos los ejercicios
-        Route::get('/workouts', [HomeController::class, 'showAllWorkouts'])->name('workouts.all');
+Route::middleware('auth')->group(function () {
+    Route::get('/workouts', [HomeController::class, 'showAllWorkouts'])->name('workouts.all');
+    Route::post('/favorites/add/{workout}', [HomeController::class, 'addFavorite'])->name('favorites.add');
+    Route::delete('/favorites/remove/{workout}', [HomeController::class, 'removeFavorite'])->name('favorites.remove');
+    Route::get('/favorites', [HomeController::class, 'showFavorite'])->name('favorites.show');
+});
 
-        // Rutas para añadir y eliminar favoritos
-        Route::post('/favorites/add/{workout}', [HomeController::class, 'addFavorite'])->name('favorites.add');
-        Route::delete('/favorites/remove/{workout}', [HomeController::class, 'removeFavorite'])->name('favorites.remove');
-    });
