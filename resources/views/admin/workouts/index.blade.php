@@ -18,7 +18,13 @@
                     <td>{{ $workout->durationTime }}</td>
                     <td>
                         <a href="{{ route('admin.workouts.edit', $workout->id) }}">Edit</a>
-                        <button wire:click="delete({{ $workout->id }})">Delete</button>
+
+                        <!-- Form to delete a workout -->
+                        <form action="{{ route('admin.workouts.destroy', $workout->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this workout?');" style="color: red; border: none; background: none; cursor: pointer;">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
