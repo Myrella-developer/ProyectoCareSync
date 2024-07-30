@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,5 +20,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-route::get('admin/dashboard',[HomeController::class, 'index'])->
-    middleware(['auth', 'admin']);
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('workouts', [HomeController::class, 'workoutsIndex'])->name('admin.workouts.index');
+    Route::get('workouts/create', [HomeController::class, 'workoutsCreate'])->name('admin.workouts.create');
+    Route::post('workouts', [HomeController::class, 'workoutsStore'])->name('admin.workouts.store');
+    Route::get('workouts/{workout}/edit', [HomeController::class, 'workoutsEdit'])->name('admin.workouts.edit');
+    Route::put('workouts/{workout}', [HomeController::class, 'workoutsUpdate'])->name('admin.workouts.update');
+    Route::delete('workouts/{workout}', [HomeController::class, 'workoutsDestroy'])->name('admin.workouts.destroy');
+});
