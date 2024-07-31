@@ -30,3 +30,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::put('workouts/{workout}', [HomeController::class, 'workoutsUpdate'])->name('admin.workouts.update');
     Route::delete('workouts/{workout}', [HomeController::class, 'workoutsDestroy'])->name('admin.workouts.destroy');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/workouts', [HomeController::class, 'showAllWorkouts'])->name('workouts.all');
+    Route::post('/favorites/add/{workout}', [HomeController::class, 'addFavorite'])->name('favorites.add');
+    Route::delete('/favorites/remove/{workout}', [HomeController::class, 'removeFavorite'])->name('favorites.remove');
+    Route::get('/favorites', [HomeController::class, 'showFavorite'])->name('favorites.show');
+});
+
