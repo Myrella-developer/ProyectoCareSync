@@ -30,9 +30,8 @@
         </div>
 
         <div>
-            <label for="">Photo</label>
-            <input type="file" id="image" name="image" accept=".png, .jpg, .jpeg" value="{{ old('image') }}">
-            <label for="image"></label>
+            <label for="image">Photo</label>
+            <input type="file" id="image" name="image" accept=".png, .jpg, .jpeg">
             @error('image')
                 <div class="error">{{ $message }}</div>
             @enderror

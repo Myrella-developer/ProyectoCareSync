@@ -32,12 +32,19 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'durationTime' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // validação da imagem
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('workouts', 'public'); // salva a imagem na pasta 'workouts' dentro de 'public/storage'
+        }
 
         Workout::create([
             'name' => $request->name,
             'description' => $request->description,
             'durationTime' => $request->durationTime,
+            'image' => $imagePath, // salva o caminho da imagem
             'user_id' => Auth::id(),
         ]);
 
