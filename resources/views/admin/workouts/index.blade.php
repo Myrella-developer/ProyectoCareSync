@@ -7,6 +7,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Duration</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -15,7 +16,14 @@
                 <tr>
                     <td>{{ $workout->name }}</td>
                     <td>{{ $workout->description }}</td>
-                    <td>{{ $workout->durationTime }}</td>
+                    <td>{{ $workout->durationTime }} minutes</td>
+                    <td>
+                        @if($workout->image)
+                            <img src="{{ asset('storage/' . $workout->image) }}" alt="{{ $workout->name }}" style="width: 100px; height: auto;">
+                        @else
+                            No Image
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('admin.workouts.edit', $workout->id) }}">Edit</a>
 

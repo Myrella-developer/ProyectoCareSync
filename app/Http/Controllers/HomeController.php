@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Workout;
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use App\Models\FavoriteWorkout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,12 +32,19 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'durationTime' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // validação da imagem
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('workouts', 'public'); // salva a imagem na pasta 'workouts' dentro de 'public/storage'
+        }
 
         Workout::create([
             'name' => $request->name,
             'description' => $request->description,
             'durationTime' => $request->durationTime,
+            'image' => $imagePath, // salva o caminho da imagem
             'user_id' => Auth::id(),
         ]);
 
@@ -50,17 +57,31 @@ class HomeController extends Controller
     }
 
     public function workoutsUpdate(Request $request, Workout $workout)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'durationTime' => 'required|integer',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'durationTime' => 'required|integer',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $workout->update($request->all());
+    $data = $request->only(['name', 'description', 'durationTime']);
 
-        return redirect()->route('admin.workouts.index')->with('success', 'Workout updated successfully.');
+    // Handle image update
+    if ($request->hasFile('image')) {
+        // Delete the old image if it exists
+        if ($workout->image) {
+            Storage::disk('public')->delete($workout->image);
+        }
+
+        // Store the new image
+        $data['image'] = $request->file('image')->store('workouts', 'public');
     }
+
+    $workout->update($data);
+
+    return redirect()->route('admin.workouts.index')->with('success', 'Workout updated successfully.');
+}
 
     public function workoutsDestroy(Workout $workout)
     {

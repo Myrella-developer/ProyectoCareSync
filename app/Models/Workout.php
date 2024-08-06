@@ -15,6 +15,7 @@ class Workout extends Model
         'name',
         'description',
         'durationTime',
+        'image',
         'user_id',
     ];
 

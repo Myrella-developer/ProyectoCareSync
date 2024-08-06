@@ -2,7 +2,7 @@
     <h1>Create New Workout</h1>
 
     <!-- Form to create a new workout -->
-    <form action="{{ route('admin.workouts.store') }}" method="POST">
+    <form action="{{ route('admin.workouts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -25,6 +25,14 @@
             <label for="durationTime">Duration (in minutes):</label>
             <input type="number" id="durationTime" name="durationTime" value="{{ old('durationTime') }}" required>
             @error('durationTime')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="image">Photo</label>
+            <input type="file" id="image" name="image" accept=".png, .jpg, .jpeg">
+            @error('image')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>

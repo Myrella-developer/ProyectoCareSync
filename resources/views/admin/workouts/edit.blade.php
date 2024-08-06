@@ -2,7 +2,7 @@
     <h1>Edit Workout</h1>
 
     <!-- Form to edit an existing workout -->
-    <form action="{{ route('admin.workouts.update', $workout->id) }}" method="POST">
+    <form action="{{ route('admin.workouts.update', $workout->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -26,6 +26,14 @@
             <label for="durationTime">Duration (in minutes):</label>
             <input type="number" id="durationTime" name="durationTime" value="{{ old('durationTime', $workout->durationTime) }}" required>
             @error('durationTime')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="image"></label>
+            <input type="file" id="image" name="image" value="{{ old('image', $workout->image) }}">
+            @error('image')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
