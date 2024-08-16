@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -45,6 +45,27 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <x-input-label for="profile_photo" :value="__('Profile Photo')" />
+            <x-text-input id="profile_photo" name="profile_photo" type="file" class="mt-1 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_photo')" />
+            @if ($user->profile_photo_path)
+                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="mt-2 h-20 w-20 rounded-full object-cover">
+            @endif
+        </div>
+
+        <div>
+            <x-input-label for="biography" :value="__('Biography')" />
+            <textarea id="biography" name="biography" class="mt-1 block w-full" rows="3">{{ old('biography', $user->biography) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('biography')" />
+        </div>
+
+        <div>
+            <x-input-label for="age" :value="__('Age')" />
+            <x-text-input id="age" name="age" type="number" class="mt-1 block w-full" :value="old('age', $user->age)" required autocomplete="age" />
+            <x-input-error class="mt-2" :messages="$errors->get('age')" />
         </div>
 
         <div class="flex items-center gap-4">
