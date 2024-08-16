@@ -12,8 +12,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $user = Auth::user(); // Obtiene el usuario autenticado
+        $favoriteWorkouts = $user->favoriteWorkouts; // Suponiendo que la relación está bien definida
+
+        return view('dashboard', compact('user', 'favoriteWorkouts'));
     }
+
 
     public function workoutsIndex()
     {
