@@ -23,6 +23,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('workouts.all')">
+                        {{ __('All Workouts') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.workouts.create')">
                         {{ __('Create a new Workouts') }}
                     </x-nav-link>
