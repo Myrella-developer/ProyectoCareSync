@@ -9,7 +9,6 @@
 ### 1. Registro y Autenticación de Usuarios
 - **Registro de nuevos usuarios:** Los usuarios pueden crear una cuenta en la aplicación para acceder a todas las funcionalidades.
 - **Inicio de sesión y cierre de sesión:** Permite a los usuarios iniciar y cerrar sesión de manera segura.
-- **Recuperación de contraseña:** Funcionalidad para recuperar la contraseña en caso de olvido.
 
 ### 2. Perfiles de Usuario
 - **Creación y edición de perfiles:** Los usuarios pueden configurar y actualizar su perfil con información personal como edad, peso y altura.
