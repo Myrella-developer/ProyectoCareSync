@@ -87,13 +87,13 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.workouts.create')" :active="request()->routeIs('admin.workouts.create')">
-                {{ __('Create a New Workout') }}
+            <x-responsive-nav-link :href="route('workouts.all')">
+                {{ __('All Workout') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Edit Workouts') }}
+            <x-responsive-nav-link :href="route('favorites.show')">
+                {{ __('Favourites Workouts') }}
             </x-responsive-nav-link>
         </div>
 
