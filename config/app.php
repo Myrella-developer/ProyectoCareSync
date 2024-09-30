@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'CareSync'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
 
