@@ -64,13 +64,7 @@
 
 6. **Configura la base de datos**
 
-    env
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=nombre_de_tu_base_de_datos
-    DB_USERNAME=tu_usuario
-    DB_PASSWORD=tu_contraseña
+    Asegúrate de configurar tu base de datos en el archivo .env
 
 7. **Ejecuta las migraciones**
 
@@ -82,22 +76,29 @@
     ```bash
     php artisan db:seed
 
-9. **Instala las dependencias de JavaScript**
+9. **Crea el enlance simbólico para el almacenamiento**
+
+   Este paso es necesario para acceder a las imágenes y otros archivos que se almacenan en storage:
+
+    ```bash
+    php artisan storage:link
+
+10. **Instala las dependencias de JavaScript**
 
     ```bash
     npm install
 
-10. **Compila los archivos con Vite**
+11. **Compila los archivos con Vite**
 
     ```bash
     npm run dev
 
-11. **Inicia el servidor de desarrollo**
+12. **Inicia el servidor de desarrollo**
 
     ```bash
     php artisan serve
 
-12. **Accede a la aplicación**
+13. **Accede a la aplicación**
 
     Abre tu navegador y ve a http://localhost:8000 para ver la aplicación en acción.
-    
+
