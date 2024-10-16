@@ -14,7 +14,7 @@ class WorkoutSeeder extends Seeder
             'description' => 'High-intensity cardio workout to burn fat.',
             'durationTime' => 30,
             'user_id' => 1,
-            'image' => 'workouts/cardo_blast.jpg', // Ruta de la imagen
+            'image' => 'workouts/cardio_blast.jpg', // Ruta de la imagen
         ]);
 
         Workout::create([
@@ -58,3 +58,4 @@ class WorkoutSeeder extends Seeder
         ]);
     }
 }
+
