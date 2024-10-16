@@ -39,7 +39,7 @@
     Cambia al directorio del proyecto
 
     ```bash
-    cd CareSync
+    cd ProyectoCareSync
 
 3. **Instala las dependencias de PHP**
 
