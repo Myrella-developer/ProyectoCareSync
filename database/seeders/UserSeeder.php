@@ -16,6 +16,9 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'usertype' => 'admin',
+            'profile_photo' => 'profile-photos/admin_photo.jpg', // Ruta de la foto de perfil
+            'age' => 35, // Edad
+            'biography' => 'Hola soy el Admin', // Biografía
         ]);
 
         User::create([
@@ -23,6 +26,9 @@ class UserSeeder extends Seeder
             'email' => 'user1@example.com',
             'password' => Hash::make('password'),
             'usertype' => 'user',
+            'profile_photo' => 'profile-photos/user1_photo.jpg', // Ruta de la foto de perfil
+            'age' => 30, // Edad
+            'biography' => 'Hola soy Usuario 1', // Biografía
         ]);
     }
 }
