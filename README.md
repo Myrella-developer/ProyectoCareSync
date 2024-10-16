@@ -64,14 +64,6 @@
 
 6. **Configura la base de datos**
 
-    env
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=nombre_de_tu_base_de_datos
-    DB_USERNAME=tu_usuario
-    DB_PASSWORD=tu_contraseña
-
 7. **Ejecuta las migraciones**
 
     ```bash
@@ -100,4 +92,3 @@
 12. **Accede a la aplicación**
 
     Abre tu navegador y ve a http://localhost:8000 para ver la aplicación en acción.
-    
