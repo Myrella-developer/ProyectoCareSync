@@ -101,4 +101,3 @@
 13. **Accede a la aplicación**
 
     Abre tu navegador y ve a http://localhost:8000 para ver la aplicación en acción.
-
